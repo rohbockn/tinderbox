@@ -15,31 +15,31 @@ and the repository exists.
 ##Solution
 It turns out the best explanation I found was [here](https://stackoverflow.com/a/22769324)
 
-###Shut down the ssh agent
+### Shut down the ssh agent
 ```
 me@localhost:~/.ssh$ killall ssh-agent
 me@localhost:~/.ssh$ killall gnome-keyring-daemon
 ```
-###Starts the ssh agent again:
+### Starts the ssh agent again:
 
 ```eval "$(ssh-agent -s)"```
 
-###Add keys, e.g.
+### Add keys, e.g.
 
 ```ssh-add ~/.ssh/id_theHardWay```
 
-####Note, this is the private key, not the publick key with the .pub ending
+#### Note, this is the private key, not the publick key with the .pub ending
 
-###Confirm the key(s) you have added
+### Confirm the key(s) you have added
 
 ```ssh-add -l```
 
-####NOTE:
+#### NOTE:
 ```ssh-add -D # removes keys you have added```
 
 At this point you will still get the errors described.  Apparently this is because git or github or both will look for id_rsa by default.  You have to point git to use the correct keys for the correct repository
 
-###Config:
+### Config:
 Create the ~/.ssh/config file and create what I think as a sort of variable to map the correct key
 
 ```
@@ -61,7 +61,7 @@ git remote set-url origin githubTHW:rohbockn/theHardWay
 
 This finally worked!  However, you still have to type in your password each time to unlock the ssh key.  I believe this is because I killed the gnome-keyring-daemon... investigate and fix!
 
-###The daemon
+### The daemon
 
 Turns out that simply starting the daemon again fixes the problem.
 gnome-keyring-daemon --start
