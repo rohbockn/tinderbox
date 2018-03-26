@@ -96,7 +96,7 @@ For repository-specific configurations, use the .git/config subdirectory of that
 
 Go to manage accounts, then SSH keys
 
-https://github.com/rohbockn/tinderbox/blob/master/security/ssh_key_forGithub.md
+[Create an ssh key](https://github.com/rohbockn/tinderbox/blob/master/security/ssh_key_forGithub.md)
 
 or, alternatively follow the directions here:  https://confluence.atlassian.com/display/STASH0212/Creating+SSH+keys
 
