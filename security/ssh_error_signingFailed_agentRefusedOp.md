@@ -12,7 +12,8 @@ Please make sure you have the correct access rights
 and the repository exists.
 ```
 
-##Solution
+## Solution
+
 It turns out the best explanation I found was [here](https://stackoverflow.com/a/22769324)
 
 ### Shut down the ssh agent
