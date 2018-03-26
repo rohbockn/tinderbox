@@ -8,7 +8,7 @@
 >✗
 Request for package information failed: self signed certificate in certificate chain (SELF_SIGNED_CERT_IN_CHAIN)
 
-# So, perform the following:
+perform the following:
 
 ```
 cd ~/.atom/packages
