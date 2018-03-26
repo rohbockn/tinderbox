@@ -1,4 +1,4 @@
-##Context
+## Context
 
 Today I couldn't remember my ssh key passwords on the git repository, so I went into github and removed the keys I had set for my two repositories, generated new keys, and tried to push.  I got errors:
 
