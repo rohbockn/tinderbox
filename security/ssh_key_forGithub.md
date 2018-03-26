@@ -23,10 +23,8 @@ Enter the passphrase and confirm at the prompt
 
 ## Copy the ssh key to your clipboard:
 
-If not installed yet:
-
 ```
-sudo apt-get install xclip
+sudo apt-get install xclip # If not installed yet
 
 xclip -sel clip < ~/.ssh/id_rsa_arbitraryName.pub
 ```
