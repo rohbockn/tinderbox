@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src="plotly-latest.min.js"></script>
+<script src="lodash.js"></script>
+<script>
+    function colorMap(col_group) {
+        myColors = ['firebrick','steelblue','olivedrab','goldenrod','orchid','cyan','tan','darkmagenta','limegreen','deeppink','skyblue','blueviolet','black']
+        // 'plum', 'blueviolet','darkgoldenrod', 'darkorange','darkcyan','darkkhaki',
+        const tmp = new Set(col_group);
+        const tmp_iterator = tmp.entries()
+        line_mappings=[];
+        marker_mappings=[];
+        cnt=0;
+        for (let x of tmp_iterator) {
+            console.log("Subpop:"+x[0]);
+            marker_mappings[cnt] = {target: x[0], value:{marker: {color: myColors[cnt], opacity: .75}}};
+            line_mappings[cnt] = {target: x[0], value:{line: {color: myColors[cnt]}}};
+            console.log("\tColor: "+myColors[cnt]);
+            cnt+=1;
+            if (cnt > myColors.length) throw "There are too many groups to map to colors, the max number of groups allowed is "+myColors.length;
+        }
+        return {line:line_mappings, marker:marker_mappings};
+    }
+
+</script>
+
+<!--<script>-->
+<!--var slplot = function(data) {-->
+
+  <!--var predictor = _.map(data, "predictor").map(Number);-->
+  <!--var response = _.map(data, "response").map(Number);-->
+  <!--var predicted = _.map(data, "predicted").map(Number);-->
+  <!--var subpop = _.map(data, "subpopulation");-->
+  <!--Plotly.plot("poc",-->
+    <!--[{name: "plot",-->
+      <!--x: predictor,-->
+      <!--y: response,-->
+      <!--mode: "markers",-->
+      <!--transforms: [{type: "groupby",-->
+                    <!--groups: subpop-->
+                    <!--}]-->
+      <!--},-->
+      <!--{name: "regression",-->
+       <!--x: predictor,-->
+       <!--y: predicted,-->
+       <!--mode: "lines",-->
+       <!--transforms: [{type: "groupby",-->
+                     <!--groups: subpop-->
+                     <!--}]-->
+       <!--}],-->
+      <!--{yaxis: {autosize: true}-->
+       <!--},-->
+      <!--{fillFrame: true-->
+      <!--})-->
+  <!--}-->
+<!--</script>-->
+</head>
+
+<body>
+<h1>POC</h1>
+<title>Scatterplot with Super-Posed Curves</title>
+<!-- <p id="demo">A Paragraph</p> -->
+<div id="poc" style="width:800px;height:600px;"></div>
+
+<script>
+//poc = document.getElementById("poc");
+Plotly.d3.csv("./example_29_control.csv", function(data) {
+
+    var predictor = _.map(data, "predictor").map(Number);
+    var response = _.map(data, "response").map(Number);
+    var predicted = _.map(data, "predicted").map(Number);
+    var subpop = _.map(data, "subpopulation");
+    var col_mappings = colorMap(subpop)
+    var line_mappings = col_mappings["line"]
+    var marker_mappings = col_mappings["marker"]
+
+
+    var point_trace = {
+        name: "plot",
+        x: predictor,
+        y: response,
+        mode: "markers",
+        transforms: [{type: "groupby",
+            groups: subpop,
+            styles: marker_mappings
+            // styles: [
+            //     {target: 'samples', value: {marker: {color:'steelblue'}}},
+            //     {target: 'control', value: {marker: {color:'goldenrod'}}}
+            //     ]
+        }],
+        hoveron:'points',
+        type: 'scatter',
+        tickangle:45
+    };
+
+    // console.log(point_trace)
+
+    var line_trace = {
+        name: "regression",
+        x: predictor,
+        y: predicted,
+        mode: "lines",
+        transforms: [{type: "groupby",
+            groups: subpop,
+            styles: line_mappings
+        }],
+        type: 'scatter'
+    };
+
+    Plotly.plot("poc",
+        [point_trace, line_trace],
+        {yaxis: {autosize: true}
+        },
+        {fillFrame: true
+        })
+});
+
+window.onresize = function () {
+   Plotly.Plots.resize('poc');
+};
+</script>
+
+</body>
+</html>
