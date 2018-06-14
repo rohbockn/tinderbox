@@ -34,7 +34,7 @@ cd <path to where you want it installed>/splunk/bin
 
 4. On running '''./splunk start --accept-license''' a prompt will appear asking for you to set an admin password.  Once set, the install will complete and you will get a message such as
 
-The Splunk web interface is at http://<my computer name>:8000
+The Splunk web interface is at http://\<my computer name\>:8000
 
 One easy way to know what your computer name is, is to open your terminal and note the prompt line:
 me@<my computer name>: wd$
