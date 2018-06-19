@@ -21,7 +21,7 @@ tar xzvf splunk.tgz -C <path to where you want it installed>
 
 3. Install/start up:
 
-cd <path to where you want it installed>/splunk/bin
+cd \<path to where you want it installed\>/splunk/bin
 
 ./splunk start --accept-license
 
