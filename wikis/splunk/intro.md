@@ -17,7 +17,9 @@ wget -O splunk-7.1.0-2e75b3406c5b-Linux-x86_64.tgz 'https://www.splunk.com/bin/s
 Don't use the .deb file provided as it isn't possible as far as I know to install that without being the superuser.  Additionally, the tarball will allow you to install wherever you want
 
 2. Extract:
-tar xzvf splunk.tgz -C <path to where you want it installed>
+tar xzvf splunk.tgz -C \<path to where you want it installed\>
+
+NOTE:  If you have an older version installed, you can still extract over the old file.  When this is done, all of your added apps, your password, etc. will remain the same after install/startup.
 
 3. Install/start up:
 
