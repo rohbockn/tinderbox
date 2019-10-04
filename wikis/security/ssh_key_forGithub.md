@@ -63,3 +63,6 @@ Then you may need to restart the ssh agent:
 
 I like the explanation given [here](http://blog.joncairns.com/2013/12/understanding-ssh-agent-and-ssh-add/)
 
+If you get an error saying the host key has changed, follow the directions at github's 'testing your ssh connection' site:
+https://help.github.com/en/articles/testing-your-ssh-connection
+Note, you mayhave to edit or remove your known-hosts file.
