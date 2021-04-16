@@ -30,3 +30,13 @@ You can use `find` with regex to feed a list of files to a command to copy the d
 ```
 find /mnt/windows  -regex ".*/\(\(.+\.xml\)\|\(Error Log\.txt\)\)" -printf "%P\n" -type f -type d | tar czvf /home/nathaniel/Desktop/nanodrop.tar --no-recursion -C /mnt/windows -T -
 ```
+
+### Moving files with wildcards
+
+```
+find ~/Desktop/test1 -name "2016*" -exec mv '{}' ~/Desktop/test2/ \;
+
+find ~/Desktop/test1 -name "2015*" -exec mv '{}' . \;
+
+find ~/Desktop/S7/Pictures/Camera -name "2016*" -exec mv '{}' . \;
+```
